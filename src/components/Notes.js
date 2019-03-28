@@ -1,33 +1,24 @@
 import React, { Component } from 'react';
 import Note from './Note';
+import {connect} from "react-redux";
+import {addNote, editNote, deleteNote} from '../actions/NoteActions'
 
 class Notes extends Component{
 
-    constructor(props){
-        super(props);
-        this.state = {notes: props.notes};
-    }
-
     handleNoteTitleChange= (noteId, e) => {
-        var notes = this.state.notes;
-        notes.find(n => (n.id === noteId)).title = e.target.value;
-        this.setState({notes: notes });
+        this.props.editNote(noteId,e.target.value,undefined)
     }
 
     handleNoteContentChange= (noteId, e) => {
-        var notes = this.state.notes;
-        notes.find(n => (n.id === noteId)).content = e.target.value;
-        this.setState({notes: notes });
+        this.props.editNote(noteId,undefined,e.target.value)
     }
 
     handleNoteDelete = (noteId, e) => {
-        var notes = this.state.notes;
-        var ind = notes.indexOf(notes.find(n => (n.id === noteId)))
-        notes.splice(ind,1)
-        this.setState({notes: notes });
+        this.props.deleteNote(noteId);
     }
 
     renderNotes = (notes) => {
+        console.log("calling render  note")
         if (notes && notes.length > 0) {      
             return notes.map((note, index) => (
                 <Note 
@@ -40,14 +31,9 @@ class Notes extends Component{
         else return [];
     }
 
-    addNotes = () => {
-        this.setState(prevState => ({
-            notes: [ ...prevState.notes,{ id: this.state.notes.length+1, title: "", content: ""}]
-        }))
-    }
-
     render(){
-        const notesComponent = this.renderNotes(this.state.notes)
+        console.log("calling rende method")
+        const notesComponent = this.renderNotes(this.props.notes)
         return(
             <div className="container">
                 <div className="row">
@@ -56,7 +42,7 @@ class Notes extends Component{
                             <div className="input-field col s12 m12 l12">
                                 <i className="material-icons prefix cyan-text text-darken-4">search</i>
                                 <textarea id="icon_prefix2" className="materialize-textarea"></textarea>
-                                <i className="material-icons prefix cyan-text text-darken-4" onClick={this.addNotes}>add</i>
+                                <i className="material-icons prefix cyan-text text-darken-4" onClick={() => this.props.addNote("","")}>add</i>
                             </div>
                         </div>
                     </form>
@@ -70,4 +56,29 @@ class Notes extends Component{
     }
 }
 
-export default Notes;
+const mapStateToProps = (state) => {
+    console.log("calling map state to props")
+    console.log(state);
+    return {
+        notes: state.NoteReducer.notes
+    };
+  };
+  
+  const mapDispatchToProps = (dispatch) => {
+      return {
+        addNote: (title,content) => {
+            console.log("calling add note")
+            dispatch(addNote(title,content));
+        },
+        editNote: (id,title,content) => {
+            console.log("calling edit note")
+            dispatch(editNote(id,title,content));
+        },
+        deleteNote: (id) => {
+            console.log("calling delete note")
+            dispatch(deleteNote(id));
+        }
+      };
+  };
+  
+export default connect(mapStateToProps, mapDispatchToProps)(Notes);
