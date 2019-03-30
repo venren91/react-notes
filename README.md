@@ -1,6 +1,12 @@
 ## React Notes
-React application bootstrapped with  [Create React App](https://github.com/facebook/create-react-app).
-Scope of this project is to learn and understand the basics of React, Redux.
+A simple React notes application bootstrapped with  [Create React App](https://github.com/facebook/create-react-app). Scope of this project is to learn and understand the react, redux (for frontend) and node js (for backend api development) that connects to mongoDB. This application additionaly has a docker file that can be used to run the app locally.
+
+### Some of the included tools/libraries
+
+* [React](https://github.com/axios/axios)
+* [Redux](https://github.com/expressjs/express)
+* [Mongodb](https://github.com/helmetjs/helmet)
+
 
 ## Pending tasks
 | Tasks         | Completion Date           | Comments  |
@@ -20,6 +26,7 @@ Scope of this project is to learn and understand the basics of React, Redux.
 * (react & redux - egghead) [https://egghead.io/lessons/react-redux-implementing-combinereducers-from-scratch]
 * (react & redux basics - youtube)[https://www.youtube.com/watch?v=tfuZ7uZmVyg&list=PL55RiY5tL51rrC3sh8qLiYHqUV3twEYU_&index=7]
 * (react & redux - netninja)[https://www.youtube.com/watch?v=f87wPQMgF4c&list=PL4cUxeGkcC9ij8CfkAY2RAGb-tmkNwQHG&index=39]
+* (node js with express to connect to Mongo DB)[https://www.youtube.com/watch?v=fsCjFHuMXj0]
 
 ## Learn More
 

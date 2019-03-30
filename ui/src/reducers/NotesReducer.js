@@ -18,8 +18,10 @@ const NotesReducer = (state = initialState,action) => {
         }
 
         case DELETE_NOTE: {
-                //TODO add logic to remove note based on id
-                updatedState = state;
+                var currentNotes = [].concat(state.notes);
+                let index = currentNotes.findIndex(n => (n.id === action.id));
+                currentNotes.splice(index, 1);
+                updatedState = {notes: currentNotes};
                 break;
         }
         
@@ -32,7 +34,7 @@ const NotesReducer = (state = initialState,action) => {
                 var newNotes = [].concat(state.notes);
                 if(newNotes !== undefined)
                 {
-                        var index = newNotes.findIndex(n => (n.id === action.id));
+                        let index = newNotes.findIndex(n => (n.id === action.id));
                         if(action.title !== undefined)                
                                 newNotes[index].title = action.title;
                         if(action.content !== undefined)                                
