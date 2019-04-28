@@ -1,6 +1,12 @@
 ## React Notes
 A simple React notes application bootstrapped with  [Create React App](https://github.com/facebook/create-react-app). Scope of this project is to learn and understand the react, redux (for frontend) and node js (for backend api development) that connects to mongoDB. This application additionaly has a docker file that can be used to run the app locally.
 
+## How to run this application
+1) Run mongodb docker container: `docker run -d -p 27017:27017 mongo`
+2) Start the server: from the server folder, execute `node server.js`. This command should start
+the server listening to port 8080 and connect to mongodb server. Please note, if you have mongodb installed in different location, change the db.js file accordingly.
+
+
 ### Some of the included tools/libraries
 
 * [React](https://github.com/axios/axios)
@@ -9,16 +15,16 @@ A simple React notes application bootstrapped with  [Create React App](https://g
 
 
 ## Pending tasks
-| Tasks         | Completion Date           | Comments  |
+| Tasks         | Status           | Comments  |
 | ------------- |:-------------:| -----:|
-| React App config and setup      | 17.03.2018 | :heavy_check_mark:  |
+| React App config and setup      | Completed | :heavy_check_mark:  |
 | Ability to add/delete notes     |       |    |
-| Add redux store to save the notes |      |    |
+| Add redux store to save the notes |  Completed    |    |
 | Add middleware to log the store state changes | | |
 | Use aysnc to update store (https://www.youtube.com/watch?v=tfuZ7uZmVyg&list=PL55RiY5tL51rrC3sh8qLiYHqUV3twEYU_&index=7) | | | 
 | Steps to deploy this app in production env |||
 | Frameworks for unit testing react app |||
-| Learn about basic config and set up of nosql database  |      |    |
+| Learn about basic config and set up of nosql database  |  Completed (using mongodb)  |    |
 | Use NoSql database to store the notes | | |
 | Add text search functionality for notes | |
 
