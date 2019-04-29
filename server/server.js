@@ -4,6 +4,9 @@ const bodyParser = require('body-parser');
 const app = express();
 const db = require('./app/config/db')
 const port = 8080;
+var cors = require('cors');
+
+    app.use(cors({origin: 'http://localhost:3000'}));
 
     /** bodyParser.urlencoded(options)
         * Parses the text as URL encoded data (which is how browsers tend to send form data from regular forms set to POST)

@@ -5,6 +5,7 @@ A simple React notes application bootstrapped with  [Create React App](https://g
 1) Run mongodb docker container: `docker run -d -p 27017:27017 mongo`
 2) Start the server: from the server folder, execute `node server.js`. This command should start
 the server listening to port 8080 and connect to mongodb server. Please note, if you have mongodb installed in different location, change the db.js file accordingly.
+3) Start ui server: `npm start react`
 
 
 ### Some of the included tools/libraries

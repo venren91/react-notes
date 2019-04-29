@@ -1,9 +1,19 @@
 import React, { Component } from 'react';
 import Note from './Note';
 import {connect} from "react-redux";
-import {addNote, editNote, deleteNote} from '../actions/NoteActions'
+import {addNote, editNote, deleteNote} from '../actions/NoteActions';
+import { NotesService } from '../services/NotesService';
 
 class Notes extends Component{
+
+    // Things to do before unloading/closing the tab
+    doSomethingBeforeUnload = () => {
+        console.log("going to call post method")
+        NotesService.saveAllNotes('venren_notes', this.props.notes)
+        .then((response)=>{
+            console.log(response.data);
+        })
+    }
 
     handleNoteTitleChange= (noteId, e) => {
         this.props.editNote(noteId,e.target.value,undefined)
@@ -34,15 +44,19 @@ class Notes extends Component{
     render(){
         console.log("calling rende method")
         const notesComponent = this.renderNotes(this.props.notes)
+        var saveButtonStyle = { marginLeft: '0px', marginRight: '0px' }
         return(
             <div className="container">
                 <div className="row">
                     <form className="col s12 m12 l12 ">
                         <div className="row">
-                            <div className="input-field col s12 m12 l12">
+                            <div className="input-field col s11 m11 l11">
                                 <i className="material-icons prefix cyan-text text-darken-4">search</i>
                                 <textarea id="icon_prefix2" className="materialize-textarea"></textarea>
-                                <i className="material-icons prefix cyan-text text-darken-4" onClick={() => this.props.addNote("","")}>add</i>
+                                <i className="material-icons prefix cyan-text text-darken-2" onClick={() => this.props.addNote("","")}>add</i>
+                            </div>
+                            <div className="input-field col s1 m1 l1" style={saveButtonStyle}>
+                                <i className="material-icons prefix cyan-text text-darken-4" onClick={() => this.doSomethingBeforeUnload()}>save</i>
                             </div>
                         </div>
                     </form>

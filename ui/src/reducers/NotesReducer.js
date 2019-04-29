@@ -1,4 +1,4 @@
-import { ADD_NOTE,DELETE_NOTE,DELETE_ALL_NOTE,EDIT_NOTE } from '../actions/NoteActions'
+import { ADD_NOTE,DELETE_NOTE,DELETE_ALL_NOTE,EDIT_NOTE,SAVE_ALL_NOTE } from '../actions/NoteActions'
 
 const initialState = {
                         notes: [ {id: 1, title:"first sample note", content:"sample content. edit to continue"} ]
@@ -40,6 +40,15 @@ const NotesReducer = (state = initialState,action) => {
                         if(action.content !== undefined)                                
                                 newNotes[index].content = action.content;
                         updatedState =  {notes: newNotes };
+                }
+                break;
+        }
+
+        case SAVE_ALL_NOTE: {
+                var notesToBeSaved = state.notes;
+                if(notesToBeSaved !== undefined)
+                {
+                        updatedState =  {notes: notesToBeSaved };
                 }
                 break;
         }

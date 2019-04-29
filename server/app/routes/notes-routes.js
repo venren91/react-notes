@@ -10,7 +10,21 @@ module.exports = function(app,db){
                     res.send(result.ops[0]);
                 }
             });
-    });
+	});
+	
+	app.post('/notes/saveAll/:collectionName',(req,res)=>{
+		console.log("save all called!!! with request " + req.body)
+        const collectionName = req.params.collectionName;
+        db.collection(collectionName).insertMany(req.body,(err,result) => {
+                if(err){
+                    res.send("An error has occured" + err)
+                }else{
+                    console.log('notes inserted successfully!!')
+                    res.send(result.ops[0]);
+                }
+            });
+	});
+	
     app.get('/notes/:collectionName/:id',(req,res)=>{
         const collectionName = req.params.collectionName;
         const id = req.params.id;
